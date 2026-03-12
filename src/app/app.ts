@@ -8,4 +8,8 @@ import { Component, signal } from '@angular/core';
 })
 export class App {
   protected readonly title = signal('corso-angular');
+
+  leggoMessagioRicevuta(value:String) {
+    console.log("messaggio ricevuto: " + value)
+  }
 }

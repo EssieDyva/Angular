@@ -39,7 +39,7 @@
 }
  -->
 
- <ng-template *ngIf="daVedere; then bloccoIf; else bloccoElse" #name></ng-template>
+<!--  <ng-template *ngIf="daVedere; then bloccoIf; else bloccoElse" #name></ng-template>
  <ng-template #bloccoIf>
   <div>
     <p>Sono visibile</p>
@@ -53,3 +53,52 @@
 
   </div>
  </ng-template>
+ -->
+<!--
+<div>
+  @for (
+    persona of persone;
+    track persona;
+    let i = $index;
+    let isFist = $first;
+    let isLast = $last
+  ) {
+    <div>
+      <li>{{ i }} {{ isFist }}/{{ isLast }} {{ persona.nome }} {{ persona.cognome }}</li>
+    </div>
+  }
+  <p>Switch</p>
+  @switch (numero) {
+    @case (1) {
+      <p>Uno</p>
+    }
+    @case (2) {
+      <p>Due</p>
+    }
+    @case (3) {
+      <p>Tre</p>
+    }
+    @default {
+      <p>Valore di default</p>
+    }
+  }
+</div>
+ -->
+@for (
+    persona of persone;
+    track persona;
+    let i = $index;
+
+  ) {
+    <li>
+      <div class="cerchio"
+      [ngClass]="{cerchioOnLine: persona.isOnline,
+                  cerchioOffLine: !persona.isOnline}">
+                  {{i}}
+      </div>
+      <p>
+        {{ persona.nome }} {{ persona.cognome }}
+      </p>
+    </li>
+  }
+<button mat-stroked-button (click)="mandaDati()">Invia msg</button>
