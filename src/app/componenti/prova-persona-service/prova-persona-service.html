@@ -1,0 +1,16 @@
+@for (persona of persone; track persona; let i = $index) {
+    @if (!isProfile) {
+        <li>
+            <div class="cerchio" [ngClass]="{
+                cerchioOnline: persona.isOnline,
+                cerchioOffline: !persona.isOnline
+            }">
+            {{i}}    
+        </div>
+        <p>{{persona.nome}}  {{persona.cognome}}</p>
+        </li>
+
+    } @else {
+        <p>Profile contatto di {{persona.nome}}  {{persona.cognome}}</p>
+    }
+}
