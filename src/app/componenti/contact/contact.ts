@@ -16,15 +16,7 @@ export class Contact implements OnInit{
   constructor(private service:ProvaServices, private route: ActivatedRoute){}
 
   ngOnInit(): void {
-    if (this.route.snapshot.paramMap.get("id")) {
-      this.isProfile=true
-      this.persona = this.service.getPersona(parseInt(this.route.snapshot.paramMap.get("id")!))
-      console.log(this.persona)
-    }
-    else {
-      this.isProfile=false
-      this.persone = this.service.getPersone()
-    }
+    this.persone = this.service.getPersone()
   }
 
 }

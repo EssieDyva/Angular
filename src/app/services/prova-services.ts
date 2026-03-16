@@ -5,10 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class ProvaServices {
 private persone = [
-  {nome: 'Luca', cognome: 'Purino', isOnline: true, colore: 'green'},
-  {nome: 'Giovanni', cognome: 'Rossi', isOnline: false, colore: 'red'},
-  {nome: 'Maria', cognome: 'Bianchi', isOnline: true, colore: 'green'},
-  {nome: 'Anna', cognome: 'Verdi', isOnline: false, colore: 'red'},
+  {nome: 'Luca', cognome: 'Purino', email:'l.purino@mail.com', isOnline: true, colore: 'green'},
+  {nome: 'Giovanni', cognome: 'Rossi', email:'g.rossi@mail.com', isOnline: false, colore: 'red'},
+  {nome: 'Maria', cognome: 'Bianchi', email:'m.bianchi@mail.com', isOnline: true, colore: 'green'},
+  {nome: 'Anna', cognome: 'Verdi', email:'a.verdi@mail.com', isOnline: false, colore: 'red'},
 ]
 
 getPersone() {
