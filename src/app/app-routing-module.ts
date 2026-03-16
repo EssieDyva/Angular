@@ -7,7 +7,8 @@ import { Contact } from './componenti/contact/contact';
 const routes: Routes = [
   {path: '', component: Home},
   {path: 'about', component: About},
-  {path: 'contact', component: Contact}
+  {path: 'contact', component: Contact},
+  {path: 'contact/:id', component:Contact}
 ];
 
 @NgModule({
