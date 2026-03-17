@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthServices {
-  isLogged = false
-  isAdmin = false
+  isLogged = true
+  isAdmin = true
 
   constructor() {}
 

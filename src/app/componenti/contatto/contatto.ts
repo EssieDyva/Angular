@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Component, OnInit, signal, afterNextRender } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ProvaServices } from '../../services/prova-services';
 import { MatCardModule } from '@angular/material/card';
+import { PersoneServices } from '../../services/persone-services';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-contatto',
@@ -11,17 +13,69 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class Contatto implements OnInit{
   id:number
-  persona:any
+  persona = signal<any | null> (null)
 
-constructor(private route:ActivatedRoute, private service:ProvaServices){}
+  updateForm:FormGroup = new FormGroup({
+    nome: new FormControl(null, Validators.required),
+    cognome: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, Validators.email]),
+    colore: new FormControl(null, Validators.required)
+  })
+
+constructor(private route:ActivatedRoute, private service:PersoneServices, private routing:Router){}
 
   ngOnInit(): void {
     // controllo della variazione della route
     this.route.paramMap.subscribe(
       (params:ParamMap) => {
         this.id =+ params.get("id")  //equivalente a parseInt
-        this.persona = this.service.getPersona(this.id)
+        this.service.findById(this.id)
+          .subscribe({
+            next: ((r:any) => {
+              this.persona.set(r)
+              this.updateForm.patchValue({
+                nome:r.nome,
+                cognome:r.cognome,
+                email:r.email,
+                colore:r.colore
+              })
+            }),
+            error:((r:any) => {
+              console.log(r)
+            })
+          })
       }
     )
   }
+
+  onSubmit() {
+    const updateBody:any = {id: this.id}
+    if(this.updateForm.controls["nome"].dirty) {
+      updateBody.nome = this.updateForm.value.nome
+    }
+    if(this.updateForm.controls["cognome"].dirty) {
+      updateBody.cognome = this.updateForm.value.cognome
+    }
+    if(this.updateForm.controls["email"].dirty) {
+      updateBody.email = this.updateForm.value.email
+    }
+    if(this.updateForm.controls["colore"].dirty) {
+      updateBody.colore = this.updateForm.value.colore
+    }
+    this.service.update(updateBody)
+      .subscribe({
+        next: ((r:any) => {
+          console.log(r)
+          this.routing.navigate(['contact'])
+        }),
+        error: ((r:any) => {
+          console.log(r)
+        })
+      })
+  }
+
+  onAnnulla() {
+    
+  }
+
 }

@@ -1,5 +1,6 @@
 import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatCardModule } from '@angular/material/card';
@@ -33,8 +34,8 @@ import { NotFound } from './componenti/not-found/not-found';
     Contatto,
     NotFound,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatCardModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatAnchor],
-  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
+  imports: [MatButtonModule, MatInputModule, BrowserModule, AppRoutingModule, MatCardModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatAnchor],
+  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay()), provideHttpClient(withFetch())],
   bootstrap: [App],
 })
 export class AppModule {}

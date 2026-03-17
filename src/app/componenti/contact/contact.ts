@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProvaServices } from '../../services/prova-services';
 import { ActivatedRoute } from '@angular/router';
+import { PersoneServices } from '../../services/persone-services';
 
 @Component({
   selector: 'app-contact',
@@ -8,15 +9,15 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
-export class Contact implements OnInit{
+export class Contact{
   persone:any
-  persona:any
-  isProfile:boolean=false
 
-  constructor(private service:ProvaServices, private route: ActivatedRoute){}
+  constructor(private service:PersoneServices, private route: ActivatedRoute){
+    this.persone = this.service.persone
+  }
 
   ngOnInit(): void {
-    this.persone = this.service.getPersone()
+    this.service.list();
   }
 
 }
