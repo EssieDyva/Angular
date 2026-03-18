@@ -6,9 +6,11 @@ import { Contact } from './componenti/contact/contact';
 import { Contatto } from './componenti/contatto/contatto';
 import { NotFound } from './componenti/not-found/not-found';
 import { authGuard } from './auth/auth-guard';
+import { Login } from './componenti/login/login';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: '/home'},
+  {path: 'login', component: Login},
   {path: 'home', component: Home},
   {path: 'about', component: About},
   {path: 'contact', component: Contact, canActivate:[authGuard], children:[

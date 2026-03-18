@@ -1,9 +1,11 @@
-import { Component, OnInit, signal, afterNextRender } from '@angular/core';
+import { Component, OnInit, signal, afterNextRender, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ProvaServices } from '../../services/prova-services';
 import { MatCardModule } from '@angular/material/card';
 import { PersoneServices } from '../../services/persone-services';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DeletePersone } from '../../dialogs/delete-persone/delete-persone';
 
 @Component({
   selector: 'app-contatto',
@@ -14,6 +16,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class Contatto implements OnInit{
   id:number
   persona = signal<any | null> (null)
+  readonly dialog = inject(MatDialog)
 
   updateForm:FormGroup = new FormGroup({
     nome: new FormControl(null, Validators.required),
@@ -75,7 +78,35 @@ constructor(private route:ActivatedRoute, private service:PersoneServices, priva
   }
 
   onAnnulla() {
-    
+    this.routing.navigate(['contact'])
   }
 
+  onDelete() {
+    const enterAnimationDuration:number = 500
+    const exitAnimationDuration:number = 500
+
+    const dialogRef = this.dialog.open(DeletePersone, {
+      width: '550px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+        persona: this.persona()
+      }
+    })
+    dialogRef.afterClosed()
+      .subscribe(resp => {
+        if (resp == 'si') 
+          this.deleteAction()
+      })
+  }
+
+  deleteAction() {
+    this.service.delete(this.id)
+      .subscribe({
+        next: ((r:any) => {
+          console.log(r)
+          this.routing.navigate(['contact'])
+        })
+      })
+  }
 }

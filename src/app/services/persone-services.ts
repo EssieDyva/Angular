@@ -5,6 +5,7 @@ import { tap } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+
 export class PersoneServices {
 
   url = "http://localhost:9090/rest/persone/"
@@ -34,6 +35,12 @@ export class PersoneServices {
 
   create(body: {}) {
     return this.http.post(this.url + "create", body)
+      .pipe(tap(() => this.list()))
+  }
+
+  delete(id:number) {
+    // return this.http.delete(this.url + "delete/" + id)
+      return this.http.delete(`${this.url}delete/${id}`)
       .pipe(tap(() => this.list()))
   }
 }

@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Cancellazione di {{persona.nome}} {{persona.cognome}}</h2>
+<mat-dialog-content>
+  Siete sicuri?
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button matButton (click)="optionSelected('no')">No</button>
+  <button matButton (click)="optionSelected('si')" cdkFocusInitial>Si</button>
+</mat-dialog-actions>

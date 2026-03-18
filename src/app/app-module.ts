@@ -6,8 +6,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule, MatAnchor } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
@@ -20,6 +21,8 @@ import { Contact } from './componenti/contact/contact';
 import { Home } from './componenti/home/home';
 import { Contatto } from './componenti/contatto/contatto';
 import { NotFound } from './componenti/not-found/not-found';
+import { DeletePersone } from './dialogs/delete-persone/delete-persone';
+import { Login } from './componenti/login/login';
 
 @NgModule({
   declarations: [
@@ -33,9 +36,27 @@ import { NotFound } from './componenti/not-found/not-found';
     Home,
     Contatto,
     NotFound,
+    DeletePersone,
+    Login,
   ],
-  imports: [MatButtonModule, MatInputModule, BrowserModule, AppRoutingModule, MatCardModule, FormsModule, ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatAnchor],
-  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay()), provideHttpClient(withFetch())],
+  imports: [
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    BrowserModule,
+    AppRoutingModule,
+    MatCardModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatAnchor,
+  ],
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(withFetch()),
+  ],
   bootstrap: [App],
 })
 export class AppModule {}
