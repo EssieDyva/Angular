@@ -9,9 +9,9 @@
             <mat-label>Password</mat-label>
             <input matInput type="password" name="password" placeholder="Introdurre password" ngModel required>
         </mat-form-field>
-        
-        <p style="color: red;">{{msg}}</p>
-        
+
+        <p style="color: red;">{{msg()}}</p>
+
         <div class="button-group">
             <button class="btn btn-primary" type="submit" [disabled]="!loginForm.valid">Login</button>
             <button class="btn btn-secondary" type="button" (click)="onRegister()">Register</button>

@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
@@ -23,6 +24,7 @@ import { Contatto } from './componenti/contatto/contatto';
 import { NotFound } from './componenti/not-found/not-found';
 import { DeletePersone } from './dialogs/delete-persone/delete-persone';
 import { Login } from './componenti/login/login';
+import { Registrazione } from './componenti/registrazione/registrazione';
 
 @NgModule({
   declarations: [
@@ -38,8 +40,10 @@ import { Login } from './componenti/login/login';
     NotFound,
     DeletePersone,
     Login,
+    Registrazione,
   ],
   imports: [
+    MatDividerModule,
     MatDialogModule,
     MatButtonModule,
     MatInputModule,

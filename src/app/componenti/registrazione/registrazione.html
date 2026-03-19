@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>Nuovo Utente</h1>
+    <form #registForm="ngForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>UserName</mat-label>
+            <input matInput type="text" name="userName" placeholder="Introdurre username" ngModel required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" name="email" placeholder="Introdurre email" ngModel required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" placeholder="Introdurre password" ngModel required>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Retype password</mat-label>
+            <input matInput type="password" name="passwordCntrl" placeholder="Introdurre di nuovo la password" ngModel required>
+        </mat-form-field>
+
+        <p style="color: red;">{{msg()}}</p>
+
+        <div class="button-group">
+            <button class="btn btn-primary" type="submit" [disabled]="!registForm.valid">Register</button>
+        </div>
+    </form>
+</div>
